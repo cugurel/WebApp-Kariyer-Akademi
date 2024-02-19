@@ -15,6 +15,7 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
+            TempData["Title"] = "Refik Anadol Resim Sergisi";
             return View();
         }
 
