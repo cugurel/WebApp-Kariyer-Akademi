@@ -1,4 +1,4 @@
-﻿@using WebApp.Models
+﻿@using Entity.Concrete;
 @model IEnumerable<Movie>
 
 @{
@@ -10,13 +10,13 @@
     {
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="@item.ImageUrl" alt="asdasdadasd">
+                <img class="card-img-top" src="~/Images/@item.ImageUrl" alt="asdasdadasd">
                 <div class="card-body">
                     <p class="card-text">@item.Name</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Detay</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Düzenle</button>
+                            <a href="/Movie/MovieDetail/@item.Id" class="btn btn-sm btn-outline-secondary">Detay</a>
+                            <a href="/Movie/UpdateMovie/@item.Id" class="btn btn-sm btn-outline-success">Düzenle</a>
                         </div>
                         <small class="text-muted">@item.Director</small>
                         <small class="text-muted">@item.ImdbRate</small>
