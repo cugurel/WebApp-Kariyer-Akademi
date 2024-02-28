@@ -7,6 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\template\.vscode\extensions.json" />
+    <Content Include="wwwroot\template\.vscode\settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\template\.github\ISSUE_TEMPLATE\bug.yml" />
+    <None Include="wwwroot\template\.github\ISSUE_TEMPLATE\config.yml" />
+    <None Include="wwwroot\template\.github\ISSUE_TEMPLATE\feature-request.yml" />
+    <None Include="wwwroot\template\.github\workflows\handle-new-issue-comment.yml" />
+    <None Include="wwwroot\template\.github\workflows\handle-new-issue.yml" />
+    <None Include="wwwroot\template\.github\workflows\issue-staler.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
