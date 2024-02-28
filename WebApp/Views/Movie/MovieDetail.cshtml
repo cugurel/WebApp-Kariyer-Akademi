@@ -4,15 +4,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">@Model.Name</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-        <p>
-            <a href="#" class="btn btn-primary my-2">@Model.ImdbRate</a>
-            <a href="#" class="btn btn-secondary my-2">@Model.Director</a>
-        </p>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Film /</span> Film Detayları</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">@Model.Name</h5>
+                <!-- Account -->
+                <div class="card-body">
+                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img src="~/Images/@Model.ImageUrl"
+                             alt="user-avatar"
+                             class="d-block rounded"
+                             height="100"
+                             width="100"
+                             id="uploadedAvatar" />
+                        <div class="button-wrapper">
+                            <h5>@Model.Director</h5>
+                            
+                            <p class="text-muted mb-0">IMDB Rate @Model.ImdbRate</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <div class="card-body">
+                    Mafya Babası veya Baba (İngilizce: The Godfather), Mario Puzo'nun yazdığı aynı adlı romandan uyarlanan, Francis Ford Coppola'nın yönettiği, Marlon Brando ve Al Pacino'nun başrollerini paylaştığı filmdir. Filmde ayrıca yardımcı rollerde James Caan, Robert Duvall, Diane Keaton, John Cazale vardır.[1] Filmin hikâyesi, II. Dünya Savaşı'nın bittiği yıl olan 1945'te başlar ve 10 yıllık bir dönemi kapsar.
+
+                    Film, New York'ta yaşayan güçlü bir İtalyan mafya ailesinin hikâyesini anlatır. Film gösterime girdiği andan itibaren çok ilgi görmüş, birçok kurum, enstitü ve derginin gelmiş geçmiş en iyi filmler sıralamasında en üst sıralara yerleşmiştir. Kullanıcı oylarının baz alındığı IMDB'de en iyi 250 film listesinde 2. sıradadır (Çok uzun bir süre 1. sırada kalan film, Temmuz 2008'de Shawshank Redemption'a birinciliği kaptırmıştır). Amerikan Film Enstitüsünün hazırladığı ve en iyi 100 Amerikan filminin yer aldığı AFI's 100 Years... 100 Movies'in 1998 listesinde 3., 2007 listesinde ise 2. sıradadır. Film ayrıca En İyi Film, En İyi Erkek Oyuncu (Marlon Brando) ve En İyi Uyarlama Senaryo (Francis Ford Coppola, Mario Puzo) dallarında Oscar kazanmıştır.
+
+                    "Baba", 1990 yılında Kongre Kütüphanesi tarafından "kültürel, tarihî ve estetik olarak önemli" filmler arasına seçilerek ABD Ulusal Film Arşivi'nde muhafaza edilmesine karar verilmiştir.
+                </div>
+                <!-- /Account -->
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
 

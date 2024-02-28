@@ -16,5 +16,14 @@ namespace WebApp.Controllers
             var movie = c.Movies.Where(x => x.Id == id).FirstOrDefault();
             return View(movie);
         }
+
+
+        public IActionResult DeleteMovie(int id)
+        {
+            var movie = c.Movies.Find(id);
+            c.Movies.Remove(movie);
+            c.SaveChanges();
+            return RedirectToAction("Index","Home");
+        }
     }
 }
