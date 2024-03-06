@@ -25,5 +25,52 @@ namespace WebApp.Controllers
             c.SaveChanges();
             return RedirectToAction("Index","Home");
         }
+
+        [HttpGet]
+        public IActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMovie(Movie movie)
+        {
+            if (movie.File != null)
+            {
+                var item = movie.File;
+                var extent = Path.GetExtension(item.FileName);
+                var randomName = ($"{Guid.NewGuid()}{extent}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", randomName);
+
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await item.CopyToAsync(stream);
+                }
+
+                movie.ImageUrl = randomName;
+                c.Movies.Add(movie);
+                c.SaveChanges();
+            }
+
+            c.Movies.Add(movie);
+            c.SaveChanges();
+            return RedirectToAction("Index","Home");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateMovie(int id)
+        {
+            var value = c.Movies.Find(id);
+            return View(value);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateMovie(Movie movie)
+        {
+            c.Movies.Update(movie);
+            c.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

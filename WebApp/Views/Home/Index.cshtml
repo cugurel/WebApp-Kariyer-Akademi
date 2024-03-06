@@ -5,12 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="card mb-5"> 
+    <div class="card mb-5">
+        
         <h5 class="card-header">Sistemde Kayıtlı Fimler</h5>
+       
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Yeni Ekle</th>
                         <th>Adı</th>
                         <th>IMDB</th>
                         <th>Yönetmen</th>
@@ -23,6 +26,9 @@
                     @foreach(var item in Model)
                     {
                         <tr>
+                            <td>
+                                <a href="/Movie/AddMovie" class="btn btn-primary">(+)</a>
+                            </td>
                             <td>
                                 <img src="~/Images/@item.ImageUrl" style="height:40px; width=40px;" />
                                 <span class="fw-medium">@item.Name</span>
