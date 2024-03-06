@@ -52,9 +52,12 @@ namespace WebApp.Controllers
                 c.Movies.Add(movie);
                 c.SaveChanges();
             }
+            else
+            {
+                c.Movies.Add(movie);
+                c.SaveChanges();
+            }
 
-            c.Movies.Add(movie);
-            c.SaveChanges();
             return RedirectToAction("Index","Home");
         }
 

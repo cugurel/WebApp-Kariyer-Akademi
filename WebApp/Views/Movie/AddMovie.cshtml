@@ -8,7 +8,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-<script>
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="py-3 mb-4"><span class="text-muted fw-light">Film Arşivi Yönetimi/</span> Film Ekleme Formu</h4>
@@ -21,7 +20,7 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                 </div>
                 <div class="card-body">
-                    <form action="/Movie/AddMovie" method="post" enctype="multipart/form-data">
+                    <form action="/Movie/AddMovie" id="example-form" onsubmit="sendForm(event)" method="post" enctype="multipart/form-data">
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Film Adı</label>
                             <div class="col-sm-10">
@@ -82,3 +81,22 @@
     </div>
 </div>
 
+
+<script>
+    function sendForm(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Kaydetmek istediğinizden emin misiniz?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: "Evet!",
+            cancelButtontext:"Vazgeç"
+        }).then(result => {
+            if (result.isConfirmed) {
+                const myForm = document.getElementById('example-form');
+                myForm.submit();
+            }
+        })
+    }
+</script>
