@@ -1,52 +1,40 @@
-﻿@using Entity.Concrete.DTOs
-@model IEnumerable<MovieCategoryDto>
+﻿@using Entity.Concrete
+@model IEnumerable<Category>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-5">
-        
-        <h5 class="card-header">Sistemde Kayıtlı Fimler</h5>
-       
+
+        <h5 class="card-header">Sistemde Kayıtlı Kategoriler</h5>
+
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Yeni Ekle</th>
                         <th>Adı</th>
-                        <th>IMDB</th>
-                        <th>Yönetmen</th>
-                        <th>Kategori</th>
-                        <th>Detay</th>
                         <th>Düzenle</th>
                         <th>Sil</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach(var item in Model)
+                    @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                <a href="/Movie/AddMovie" class="btn btn-primary">(+)</a>
+                                <a href="/Category/AddCategory" class="btn btn-primary">(+)</a>
                             </td>
                             <td>
-                                <img src="~/Images/@item.ImageUrl" style="height:40px; width=40px;" />
-                                <span class="fw-medium">@item.Name</span>
+                                @item.Name
+                            </td>
+                            
+                            <td>
+                                <a href="/Category/UpdateCategory/@item.Id" class="btn btn-success btn-sm">Güncelle</a>
                             </td>
                             <td>
-                                @item.ImdbRate
-                            </td>
-                            <td>@item.Director</td>
-                            <td>@item.CategoryName</td>
-                            <td>
-                                <a href="/Movie/MovieDetail/@item.Id" class="btn btn-info btn-sm">Detay</a>
-                            </td>
-                            <td>
-                                <a href="/Movie/UpdateMovie/@item.Id" class="btn btn-success btn-sm">Güncelle</a>
-                            </td>
-                            <td>
-                                <a href="/Movie/DeleteMovie/@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                                <a href="/Category/DeleteCategory/@item.Id" class="btn btn-danger btn-sm">Sil</a>
                             </td>
                         </tr>
                     }

@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "AddMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Film Arşivi Yönetimi/</span> Kategori Ekleme Formu</h4>
+
+    <!-- Basic Layout & Basic with Icons -->
+    <div class="row">
+        <!-- Basic Layout -->
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                </div>
+                <div class="card-body">
+                    <form action="/Category/AddCategory" id="example-form" onsubmit="sendForm(event)" method="post">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Film Adı</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="Name" class="form-control" id="basic-default-name" placeholder="Kategori adı giriniz..." />
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Kategori Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    function sendForm(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Kaydetmek istediğinizden emin misiniz?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: "Evet!",
+            cancelButtonText: "Vazgeç"
+        }).then(result => {
+            if (result.isConfirmed) {
+                const myForm = document.getElementById('example-form');
+                myForm.submit();
+            }
+        })
+    }
+</script>
