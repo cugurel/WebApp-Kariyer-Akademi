@@ -1,5 +1,6 @@
 ﻿using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebApp.Controllers
 {
@@ -29,6 +30,14 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
+            List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
+                                                      select new SelectListItem
+                                                      {
+                                                          Text = c.Name,
+                                                          Value = c.Id.ToString()
+                                                      }).ToList();
+
+            ViewBag.Category = categoryOfMovie;
             return View();
         }
 
