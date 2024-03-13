@@ -44,6 +44,15 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMovie(Movie movie)
         {
+            List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = c.Name,
+                                                        Value = c.Id.ToString()
+                                                    }).ToList();
+
+            ViewBag.Category = categoryOfMovie;
+
             if (movie.File != null)
             {
                 var item = movie.File;
@@ -73,6 +82,15 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult UpdateMovie(int id)
         {
+            List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = c.Name,
+                                                        Value = c.Id.ToString()
+                                                    }).ToList();
+
+            ViewBag.Category = categoryOfMovie;
+
             var value = c.Movies.Find(id);
             return View(value);
         }

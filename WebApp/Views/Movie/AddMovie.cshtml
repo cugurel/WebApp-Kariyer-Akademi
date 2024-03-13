@@ -1,4 +1,5 @@
-﻿
+﻿@using Entity.Concrete;
+
 @{
     ViewData["Title"] = "AddMovie";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -70,12 +71,15 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-email">Kategori Seçimi</label>
                             <div class="col-sm-10">
-                                <select class="form-select form-control col-sm-10" id="exampleFormControlSelect1" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                @Html.DropDownList("CategoryId", (List<SelectListItem>)ViewBag.Category,"Kategori Seçiniz", new {@name="CategoryId", @class = "form-select form-control col-sm-10" })
+                                @*<select class="form-select form-control col-sm-10" id="exampleFormControlSelect1" aria-label="Default select example">
+                                    <option selected>Kategori Seçimi</option>
+                                    @foreach (var item in ViewBag.categoryOfMovie as IEnumerable<Category>)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                    
+                                </select>*@
                             </div>
                             
                         </div>
