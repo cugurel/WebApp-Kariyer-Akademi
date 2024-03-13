@@ -16,7 +16,7 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                 </div>
                 <div class="card-body">
-                    <form action="/Movie/UpdateMovie" method="post">
+                    <form action="/Movie/UpdateMovie" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="Id" value="@Model.Id" class="form-control" id="basic-default-name" placeholder="Film adı giriniz..." />
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Film Adı</label>
@@ -42,6 +42,21 @@
                                     <input type="text"
                                            name="ImdbRate"
                                            value="@Model.ImdbRate"
+                                           id="basic-default-email"
+                                           class="form-control"
+                                           placeholder="IMDB Puanı Giriniz"
+                                           aria-label="john.doe"
+                                           aria-describedby="basic-default-email2" />
+                                    <span class="input-group-text" id="basic-default-email2"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-email">IMDB Puan</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="file"
+                                           name="File"
                                            id="basic-default-email"
                                            class="form-control"
                                            placeholder="IMDB Puanı Giriniz"
