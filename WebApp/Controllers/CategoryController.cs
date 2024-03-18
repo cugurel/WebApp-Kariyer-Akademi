@@ -1,4 +1,5 @@
-﻿using Entity.Concrete;
+﻿using DataAccessLayer.Concrete;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
