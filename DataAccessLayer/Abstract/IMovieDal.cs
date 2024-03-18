@@ -11,5 +11,9 @@ namespace DataAccessLayer.Abstract
     {
         //Bu fonksiyon imzası tüm filmleri listeler
         List<Movie> GetList();
+        void Add(Movie movie);
+        void Update(Movie movie);
+        void Delete(Movie movie);
+        Movie GetById(int id);
     }
 }
