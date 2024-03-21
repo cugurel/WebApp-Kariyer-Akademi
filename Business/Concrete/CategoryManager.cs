@@ -11,30 +11,30 @@ namespace Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        CategoryRespository categoryRespository = new CategoryRepository();
-        public void CatagoryAdd(Category category)
+        CategoryRepository categoryRespository = new CategoryRepository();
+        public void CategoryAdd(Category category)
         {
-            throw new NotImplementedException();
+            categoryRespository.Insert(category);
         }
 
-        public void CatagoryUpdate(Category category)
+        public void CategoryUpdate(Category category)
         {
-            throw new NotImplementedException();
+            categoryRespository.Update(category);
         }
 
         public void CategoryDelete(Category category)
         {
-            throw new NotImplementedException();
+            categoryRespository.Delete(category);
         }
 
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return categoryRespository.GetById(id);
         }
 
         public List<Category> GetList()
         {
-            throw new NotImplementedException();
+            return categoryRespository.GetAll();
         }
     }
 }
