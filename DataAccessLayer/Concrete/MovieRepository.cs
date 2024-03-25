@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Abstract;
 using Entity.Concrete;
+using Entity.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +11,34 @@ namespace DataAccessLayer.Concrete
 {
     public class MovieRepository : IMovieDal
     {
-        Context c = new Context();
-        public void Add(Movie movie)
+        public void Delete(Movie t)
         {
-            c.Movies.Add(movie);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
-        public void Delete(Movie movie)
+        public List<Movie> GetAll()
         {
-            c.Movies.Remove(movie);
-            c.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public Movie GetById(int id)
         {
-            return c.Movies.Find(id);
+            throw new NotImplementedException();
         }
 
-        public List<Movie> GetList()
+        public List<MovieCategoryDto> GetMovieDto()
         {
-            return c.Movies.ToList();
+            throw new NotImplementedException();
         }
 
-        public void Update(Movie movie)
+        public void Insert(Movie t)
         {
-            c.Update(movie);
-            c.SaveChanges();
+            throw new NotImplementedException();
+        }
+
+        public void Update(Movie t)
+        {
+            throw new NotImplementedException();
         }
     }
 }

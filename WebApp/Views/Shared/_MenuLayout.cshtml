@@ -1,7 +1,7 @@
 ﻿<ul class="menu-inner py-1">
     <!-- Dashboards -->
-    <li class="menu-item active open">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
+    <li class="menu-item">
+        <a href="/Home/Index" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Dashboards">Ana Panel</div>
             @*                            <div class="badge bg-danger rounded-pill ms-auto">5</div>
@@ -9,7 +9,7 @@
         </a>
         <ul class="menu-sub">
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a href="/Home/Index" class="menu-link">
                     <div data-i18n="Analytics">Film Listesi</div>
                 </a>
@@ -30,7 +30,7 @@
         </a>
         <ul class="menu-sub">
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a href="/Category/Index" class="menu-link">
                     <div data-i18n="Analytics">Kategori Listesi</div>
                 </a>
@@ -377,3 +377,48 @@
         </a>
     </li>
 </ul>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Tüm menü bağlantılarını seç
+        var menuLinks = document.querySelectorAll('.menu-link');
+
+        // Her menü bağlantısı için
+        menuLinks.forEach(function (link) {
+            // Bağlantının URL'sini al
+            var linkUrl = link.getAttribute('href');
+
+            // Eğer bağlantı URL'si, mevcut sayfa URL'si ile eşleşiyorsa
+            if (window.location.href.indexOf(linkUrl) !== -1) {
+                // Menü öğesine "active" veya "open" sınıfını ekle
+                link.parentElement.classList.add('active');
+                // İhtiyaç halinde üst menünün de açık olması gerekiyorsa eğer
+                link.closest('.menu-item').classList.add('open');
+            }
+
+            // Alt menü varsa
+            var subMenu = link.nextElementSibling;
+            if (subMenu && subMenu.classList.contains('menu-sub')) {
+                // Alt menüdeki bağlantılar kontrol edilir
+                var subMenuLinks = subMenu.querySelectorAll('.menu-link');
+                subMenuLinks.forEach(function (subLink) {
+                    var subLinkUrl = subLink.getAttribute('href');
+                    if (window.location.href.indexOf(subLinkUrl) !== -1) {
+                        // Alt menü bağlantısı ile eşleşen sayfa varsa, üst menüyü açık hale getir
+                        link.closest('.menu-item').classList.add('active');
+                        link.closest('.menu-item').classList.add('open');
+                    }
+                });
+            }
+
+            // Anasayfadaysak Ana Panel'i aktif hale getir
+            if (window.location.pathname === '/') {
+                var dashboardLink = document.querySelector('[data-i18n="Dashboards"]');
+                if (dashboardLink && dashboardLink.parentElement.classList.contains('menu-item')) {
+                    dashboardLink.parentElement.classList.add('active');
+                }
+            }
+        });
+    });
+</script>

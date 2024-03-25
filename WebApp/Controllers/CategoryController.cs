@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using Business.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,18 +8,17 @@ namespace WebApp.Controllers
 {
     public class CategoryController : Controller
     {
-        Context c = new Context();
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
-            var categories = c.Categories.ToList();
+            var categories = categoryManager.GetList();
             return View(categories);
         }
 
         public IActionResult DeleteCategory(int id)
         {
-            var category = c.Categories.Find(id);
-            c.Categories.Remove(category);
-            c.SaveChanges();
+            var category = categoryManager.GetById(id);
+            categoryManager.CategoryDelete(category);
             return RedirectToAction("Index", "Category");
         }
 
@@ -30,24 +31,22 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategory(Category category)
         {
-            
-            c.Categories.Add(category);
-            c.SaveChanges();
+
+            categoryManager.CategoryAdd(category);
             return RedirectToAction("Index", "Category");
         }
 
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
-            var value = c.Categories.Find(id);
+            var value = categoryManager.GetById(id);
             return View(value);
         }
 
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            c.Categories.Update(category);
-            c.SaveChanges();
+            categoryManager.CategoryUpdate(category);
             return RedirectToAction("Index", "Category");
         }
     }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
+using Entity.Concrete;
+using Entity.Concrete.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    internal class EfMovieRepository
+    public class EfMovieRepository : GenericRepository<Movie>, IMovieDal
     {
+        public List<MovieCategoryDto> GetMovieDto()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
