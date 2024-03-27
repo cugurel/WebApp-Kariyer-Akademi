@@ -28,7 +28,7 @@ namespace Api.Controllers
 
 
         /// <summary>
-        /// Id girilmesi zorunludur
+        /// Id girilmesi zorunludur, id ye göre kategori getirir.
         /// </summary>
         [HttpGet]
         public IActionResult GetById(int id)
