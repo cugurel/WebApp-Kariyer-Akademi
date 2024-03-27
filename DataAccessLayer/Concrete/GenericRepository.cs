@@ -14,6 +14,7 @@ namespace DataAccessLayer.Concrete
         {
             using var c = new Context();
             c.Remove(t);
+            c.SaveChanges();
         }
 
         public List<T> GetAll()
@@ -32,12 +33,14 @@ namespace DataAccessLayer.Concrete
         {
             using var c = new Context();
             c.Add(t);
+            c.SaveChanges();
         }
 
         public void Update(T t)
         {
             using var c = new Context();
             c.Update(t);
+            c.SaveChanges();
         }
     }
 }
