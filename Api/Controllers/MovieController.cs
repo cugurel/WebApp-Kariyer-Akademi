@@ -15,7 +15,7 @@ namespace Api.Controllers
         [HttpGet("AllMovies")]
         public IActionResult GetAllMovie()
         {
-            var values = movieManager.GetList();
+            var values = movieManager.GetMoviesWithCategory();
             if (values == null)
             {
                 return BadRequest("Veri bulunamadı!!!");

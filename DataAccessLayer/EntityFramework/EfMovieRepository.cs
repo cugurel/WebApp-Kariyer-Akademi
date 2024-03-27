@@ -12,9 +12,23 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfMovieRepository : GenericRepository<Movie>, IMovieDal
     {
+        Context context = new Context();
         public List<MovieCategoryDto> GetMovieDto()
         {
-            throw new NotImplementedException();
+            var result = (from mv in context.Movies
+                          join ct in context.Categories on mv.CategoryId equals ct.Id
+                          select new MovieCategoryDto
+                          {
+                              Id = mv.Id,
+                              CategoryId = mv.CategoryId,
+                              Director = mv.Director,
+                              ImageUrl = mv.ImageUrl,
+                              ImdbRate = mv.ImdbRate,
+                              Name = mv.Name,
+                              CategoryName = ct.Name
+                          });
+
+            return result.ToList();
         }
     }
 }

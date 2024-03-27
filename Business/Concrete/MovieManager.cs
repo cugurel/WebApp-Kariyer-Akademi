@@ -1,11 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccessLayer.Abstract;
 using Entity.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entity.Concrete.DTOs;
 
 namespace Business.Concrete
 {
@@ -41,6 +37,11 @@ namespace Business.Concrete
         public List<Movie> GetList()
         {
             return _movieDal.GetAll();
+        }
+
+        public List<MovieCategoryDto> GetMoviesWithCategory()
+        {
+            return _movieDal.GetMovieDto();
         }
     }
 }
