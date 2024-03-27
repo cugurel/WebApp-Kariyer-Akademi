@@ -12,6 +12,9 @@ namespace Api.Controllers
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
 
+        /// <summary>
+        /// Tüm kategorileri listeler.
+        /// </summary>
         [HttpGet("AllCategories")]
         public IActionResult GetAllCategory()
         {
@@ -24,6 +27,9 @@ namespace Api.Controllers
         }
 
 
+        /// <summary>
+        /// Id girilmesi zorunludur
+        /// </summary>
         [HttpGet]
         public IActionResult GetById(int id)
         {
