@@ -69,7 +69,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-email">Kategori Seçimi</label>
                             <div class="col-sm-10">
-                                @Html.DropDownList("CategoryId", (List<SelectListItem>)ViewBag.Category,"Kategori Seçiniz", new {@name="CategoryId", @value=Model.CategoryId, @class = "form-select form-control col-sm-10" })
+                                @*@Html.DropDownList("CategoryId", (List<SelectListItem>)ViewBag.Category,"Kategori Seçiniz", new {@name="CategoryId", @value=Model.CategoryId, @class = "form-select form-control col-sm-10" })*@
                                 @*<select class="form-select form-control col-sm-10" id="exampleFormControlSelect1" aria-label="Default select example">
                                 <option selected>Kategori Seçimi</option>
                                 @foreach (var item in ViewBag.categoryOfMovie as IEnumerable<Category>)
@@ -78,6 +78,21 @@
                                 }
 
                                 </select>*@
+
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               name="CategoryId"
+                                               value="@Model.CategoryId"
+                                               id="basic-default-email"
+                                               class="form-control"
+                                               placeholder=""
+                                               aria-label="john.doe"
+                                               aria-describedby="basic-default-email2" />
+                                        <span class="input-group-text" id="basic-default-email2"></span>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>

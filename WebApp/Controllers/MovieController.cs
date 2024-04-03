@@ -47,18 +47,22 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMovie(Movie movie)
         {
+            try
+            {
+                var httpClient = new HttpClient();
+                var jsonMovie = JsonConvert.SerializeObject(movie);
+                StringContent content = new StringContent(jsonMovie, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.
+                    PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
 
-            var httpClient = new HttpClient();
-            var jsonMovie = JsonConvert.SerializeObject(movie);
-            StringContent content = new StringContent(jsonMovie, Encoding.UTF8,"application/json");
-            var responseMessage = await httpClient.PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index", "Home");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception e)
             {
-                return RedirectToAction("AddMovie", "Movie");
+                throw e;
             }
 
             //List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
@@ -98,20 +102,28 @@ namespace WebApp.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult UpdateMovie(int id)
+        public async Task<IActionResult> UpdateMovie(int id)
         {
-            List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = c.Name,
-                                                        Value = c.Id.ToString()
-                                                    }).ToList();
 
-            ViewBag.Category = categoryOfMovie;
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:7101/api/Movie/"+id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonEmployee = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<Movie>(jsonEmployee);
+                return View(value);
+            }
+            //List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
+            //                                        select new SelectListItem
+            //                                        {
+            //                                            Text = c.Name,
+            //                                            Value = c.Id.ToString()
+            //                                        }).ToList();
 
-            var value = c.Movies.Find(id);
-            return View(value);
+            //ViewBag.Category = categoryOfMovie;
+
+            //var value = c.Movies.Find(id);
+            return View();
         }
 
         [HttpPost]
