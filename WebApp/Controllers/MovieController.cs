@@ -2,6 +2,8 @@
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace WebApp.Controllers
 {
@@ -45,39 +47,55 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMovie(Movie movie)
         {
-            List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = c.Name,
-                                                        Value = c.Id.ToString()
-                                                    }).ToList();
 
-            ViewBag.Category = categoryOfMovie;
-
-            if (movie.File != null)
+            var httpClient = new HttpClient();
+            var jsonMovie = JsonConvert.SerializeObject(movie);
+            StringContent content = new StringContent(jsonMovie, Encoding.UTF8,"application/json");
+            var responseMessage = await httpClient.PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var item = movie.File;
-                var extent = Path.GetExtension(item.FileName);
-                var randomName = ($"{Guid.NewGuid()}{extent}");
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", randomName);
-
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await item.CopyToAsync(stream);
-                }
-
-                movie.ImageUrl = randomName;
-                c.Movies.Add(movie);
-                c.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                c.Movies.Add(movie);
-                c.SaveChanges();
+                return RedirectToAction("AddMovie", "Movie");
             }
 
-            return RedirectToAction("Index","Home");
+            //List<SelectListItem> categoryOfMovie = (from c in c.Categories.ToList()
+            //                                        select new SelectListItem
+            //                                        {
+            //                                            Text = c.Name,
+            //                                            Value = c.Id.ToString()
+            //                                        }).ToList();
+
+            //ViewBag.Category = categoryOfMovie;
+
+            //if (movie.File != null)
+            //{
+            //    var item = movie.File;
+            //    var extent = Path.GetExtension(item.FileName);
+            //    var randomName = ($"{Guid.NewGuid()}{extent}");
+            //    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", randomName);
+
+
+            //    using (var stream = new FileStream(path, FileMode.Create))
+            //    {
+            //        await item.CopyToAsync(stream);
+            //    }
+
+            //    movie.ImageUrl = randomName;
+            //    c.Movies.Add(movie);
+            //    c.SaveChanges();
+            //}
+            //else
+            //{
+            //    c.Movies.Add(movie);
+            //    c.SaveChanges();
+            //}
+
+            //return RedirectToAction("Index","Home");
+
+            return View();
         }
 
         [HttpGet]
