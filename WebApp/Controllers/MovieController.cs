@@ -54,7 +54,6 @@ namespace WebApp.Controllers
                 StringContent content = new StringContent(jsonMovie, Encoding.UTF8, "application/json");
                 var responseMessage = await httpClient.
                     PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
-
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index", "Home");
@@ -102,6 +101,7 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> UpdateMovie(int id)
         {
 
@@ -127,11 +127,26 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateMovie(Movie movie)
+        public async Task<IActionResult> UpdateMovie(Movie movie)
         {
-            c.Movies.Update(movie);
-            c.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            try
+            {
+                var httpClient = new HttpClient();
+                var jsonMovie = JsonConvert.SerializeObject(movie);
+                StringContent content = new StringContent(jsonMovie, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.
+                    PutAsync("https://localhost:7101/api/Movie/UpdateMovie", content);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return View();
         }
     }
 }
