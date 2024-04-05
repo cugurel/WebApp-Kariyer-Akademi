@@ -1,24 +1,28 @@
 ﻿using Business.Concrete;
+using Business.ValidationRules;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.Results;
+using System.ComponentModel.DataAnnotations;
+using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace WebApp.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        CategoryManager categoryManager = new EfCategoryRepository();
         public IActionResult Index()
         {
-            var categories = categoryManager.GetList();
+            var categories = categoryManager.GetAll();
             return View(categories);
         }
 
         public IActionResult DeleteCategory(int id)
         {
             var category = categoryManager.GetById(id);
-            categoryManager.CategoryDelete(category);
+            categoryManager.TAdd(category);
             return RedirectToAction("Index", "Category");
         }
 
@@ -29,10 +33,22 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCategory(Category category)
+        public IActionResult AddCategory(Category category)
         {
-
-            categoryManager.CategoryAdd(category);
+            CategoryValidator cv = new CategoryValidator();
+            ValidationResult results = cv.Validate(category);
+            if (results.IsValid)
+            {
+                categoryManager.TAdd(category);
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            
             return RedirectToAction("Index", "Category");
         }
 
@@ -46,7 +62,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            categoryManager.CategoryUpdate(category);
+            categoryManager.TAdd(category);
             return RedirectToAction("Index", "Category");
         }
     }

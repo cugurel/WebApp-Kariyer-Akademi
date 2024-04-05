@@ -6,11 +6,11 @@ namespace WebApp.ViewComponents
 {
     public class CategoryList : ViewComponent
     {
-        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        CategoryManager categoryManager = (new EfCategoryRepository());
 
         public IViewComponentResult Invoke()
         {
-            var categories = categoryManager.GetList();
+            var categories = categoryManager.GetAll();
             return View(categories); 
         }
     }

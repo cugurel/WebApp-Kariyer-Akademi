@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using Entity.Concrete;
 
 namespace Business.Concrete
@@ -32,5 +33,7 @@ namespace Business.Concrete
         {
             _categoryDal.Update(t);
         }
+
+        
     }
 }
