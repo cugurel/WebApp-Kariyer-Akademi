@@ -8,24 +8,9 @@ namespace Business.Concrete
     {
         ICategoryDal _categoryDal;
 
-        public CategoryManager(ICategoryDal categoryDal)
+        public List<Category> GetAll()
         {
-            _categoryDal = categoryDal;
-        }
-
-        public void CategoryAdd(Category category)
-        {
-            _categoryDal.Insert(category);
-        }
-
-        public void CategoryUpdate(Category category)
-        {
-            _categoryDal.Update(category);
-        }
-
-        public void CategoryDelete(Category category)
-        {
-            _categoryDal.Delete(category);
+            return _categoryDal.GetAll();
         }
 
         public Category GetById(int id)
@@ -33,9 +18,19 @@ namespace Business.Concrete
             return _categoryDal.GetById(id);
         }
 
-        public List<Category> GetList()
+        public void TAdd(Category t)
         {
-            return _categoryDal.GetAll();
+            _categoryDal.Insert(t);
+        }
+
+        public void TDelete(Category t)
+        {
+            _categoryDal.Delete(t);
+        }
+
+        public void TUpdate(Category t)
+        {
+            _categoryDal.Update(t);
         }
     }
 }
