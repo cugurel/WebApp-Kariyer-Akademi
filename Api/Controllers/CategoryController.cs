@@ -10,7 +10,7 @@ namespace Api.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        CategoryManager categoryManager = new EfCategoryRepository();
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
 
         /// <summary>
         /// Tüm kategorileri listeler.
@@ -44,14 +44,14 @@ namespace Api.Controllers
         [HttpPost("AddNewCategory")]
         public IActionResult AddCategory(Category category)
         {
-            categoryManager.TAdd(category);
+            categoryManager.Add(category);
             return Ok(category);
         }
 
         [HttpPut("UpdateCategory")]
         public IActionResult UpdateCategory(Category category)
         {
-            categoryManager.TUpdate(category);
+            categoryManager.Update(category);
             return Ok(category);
         }
 
@@ -59,7 +59,7 @@ namespace Api.Controllers
         public IActionResult DeleteCategory(int id)
         {
             var value = categoryManager.GetById(id);
-            categoryManager.TDelete(value);
+            categoryManager.Delete(value);
             return Ok();
         }
     }

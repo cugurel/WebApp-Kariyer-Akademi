@@ -52,12 +52,14 @@ namespace WebApp.Controllers
                 var httpClient = new HttpClient();
                 var jsonMovie = JsonConvert.SerializeObject(movie);
                 StringContent content = new StringContent(jsonMovie, Encoding.UTF8, "application/json");
+                
                 var responseMessage = await httpClient.
-                    PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
+                PostAsync("https://localhost:7101/api/Movie/AddNewMovie", content);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                
             }
             catch (Exception e)
             {

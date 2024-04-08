@@ -6,7 +6,7 @@ namespace WebApp.ViewComponents
 {
     public class CategoryList : ViewComponent
     {
-        CategoryManager categoryManager = (new EfCategoryRepository());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
 
         public IViewComponentResult Invoke()
         {

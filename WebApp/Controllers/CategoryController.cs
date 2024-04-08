@@ -12,7 +12,7 @@ namespace WebApp.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager categoryManager = new EfCategoryRepository();
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
             var categories = categoryManager.GetAll();
@@ -22,7 +22,7 @@ namespace WebApp.Controllers
         public IActionResult DeleteCategory(int id)
         {
             var category = categoryManager.GetById(id);
-            categoryManager.TAdd(category);
+            categoryManager.Add(category);
             return RedirectToAction("Index", "Category");
         }
 
@@ -39,7 +39,7 @@ namespace WebApp.Controllers
             ValidationResult results = cv.Validate(category);
             if (results.IsValid)
             {
-                categoryManager.TAdd(category);
+                categoryManager.Add(category);
             }
             else
             {
@@ -62,7 +62,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            categoryManager.TAdd(category);
+            categoryManager.Add(category);
             return RedirectToAction("Index", "Category");
         }
     }
