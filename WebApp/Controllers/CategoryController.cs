@@ -46,12 +46,15 @@ namespace WebApp.Controllers
             if (results.IsValid)
             {
                 _categoryService.Add(category);
+                return RedirectToAction("Index", "Category");
             }
             else
             {
                 foreach (var item in results.Errors)
                 {
+                    TempData["ErrorMessage"] = item;
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    return View();
                 }
             }
             
