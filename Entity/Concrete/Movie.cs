@@ -19,8 +19,8 @@ namespace Entity.Concrete
         public string? ImageUrl { get; set; }
         public int? CategoryId { get; set; }
 
-        //[NotMapped]
-        //public IFormFile File { get; set; }
+        [NotMapped]
+        public IFormFile File { get; set; }
     }
     
 }

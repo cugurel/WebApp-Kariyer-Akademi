@@ -7,22 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using FluentValidation.Results;
 using System.ComponentModel.DataAnnotations;
 using ValidationResult = FluentValidation.Results.ValidationResult;
+using Business.Abstract;
 
 namespace WebApp.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+             _categoryService = categoryService;
+        }
         public IActionResult Index()
         {
-            var categories = categoryManager.GetAll();
+            var categories = _categoryService.GetAll();
             return View(categories);
         }
 
         public IActionResult DeleteCategory(int id)
         {
-            var category = categoryManager.GetById(id);
-            categoryManager.Add(category);
+            var category = _categoryService.GetById(id);
+            _categoryService.Add(category);
             return RedirectToAction("Index", "Category");
         }
 
@@ -39,7 +45,7 @@ namespace WebApp.Controllers
             ValidationResult results = cv.Validate(category);
             if (results.IsValid)
             {
-                categoryManager.Add(category);
+                _categoryService.Add(category);
             }
             else
             {
@@ -55,14 +61,14 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
-            var value = categoryManager.GetById(id);
+            var value = _categoryService.GetById(id);
             return View(value);
         }
 
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            categoryManager.Add(category);
+            _categoryService.Add(category);
             return RedirectToAction("Index", "Category");
         }
     }
