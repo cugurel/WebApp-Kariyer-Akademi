@@ -8,7 +8,7 @@ using WebApp.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("server = Cagri; database=MovieDb; integrated security=true;",
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("server = melisa; database=MovieDb; integrated security=true;",
     builder => builder.EnableRetryOnFailure()));
 
 builder.Services.AddSession(options =>
@@ -45,6 +45,6 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
 
 app.Run();
