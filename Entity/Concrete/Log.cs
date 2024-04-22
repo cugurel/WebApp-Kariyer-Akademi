@@ -11,6 +11,7 @@ namespace Entity.Concrete
         public int Id { get; set; }
         public string UserId { get; set; }
         public string Process { get; set; }
+        public string Parameter { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
     }
