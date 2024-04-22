@@ -1,4 +1,6 @@
-﻿using Entity.Identity;
+﻿using DataAccessLayer.Concrete;
+using Entity.Concrete;
+using Entity.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Identity;
@@ -6,10 +8,12 @@ using WebApp.Models.Identity;
 
 namespace WebApp.Controllers
 {
+
     public class AuthController : Controller
     {
         UserManager<User> _userManager;
         SignInManager<User> _signInManager;
+        Context c = new Context();
 
         public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -48,6 +52,8 @@ namespace WebApp.Controllers
 
             if (result.Succeeded)
             {
+                Log log = new Log();
+
                 return RedirectToAction("Index", "Home");
             }
             return View();

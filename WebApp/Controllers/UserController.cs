@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Identity;
 using WebApp.Models.Identity;
@@ -16,18 +17,21 @@ namespace WebApp.Controllers
             _signinManager = signinManager;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var users = _userManager.Users.ToList();
             return View(users);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {

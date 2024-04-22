@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccessLayer.Concrete;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class MovieController : Controller
     {
         IMovieService _movieService;

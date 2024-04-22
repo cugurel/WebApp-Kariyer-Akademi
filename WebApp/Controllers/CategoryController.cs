@@ -8,9 +8,11 @@ using FluentValidation.Results;
 using System.ComponentModel.DataAnnotations;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 using Business.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         ICategoryService _categoryService;
