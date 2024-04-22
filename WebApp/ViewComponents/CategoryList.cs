@@ -11,7 +11,7 @@ namespace WebApp.ViewComponents
         public IViewComponentResult Invoke()
         {
             var categories = categoryManager.GetAll();
-            return View(categories); 
+            return View(categories);
         }
     }
 }

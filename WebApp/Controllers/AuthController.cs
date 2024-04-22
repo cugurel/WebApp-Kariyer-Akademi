@@ -19,6 +19,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Login(UserModel model)
         {
+
             return View();
         }
     }
