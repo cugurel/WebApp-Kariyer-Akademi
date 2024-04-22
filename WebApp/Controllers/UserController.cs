@@ -18,7 +18,8 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var users = _userManager.Users.ToList();
+            return View(users);
         }
 
         [HttpGet]
