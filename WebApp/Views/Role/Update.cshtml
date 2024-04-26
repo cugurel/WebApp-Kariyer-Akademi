@@ -1,0 +1,68 @@
+﻿@using WebApp.Models.Identity
+@model RoleDetails
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mb-5">
+
+        <h5 class="card-header">Rol Düzenle</h5>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/Role/Update">
+                    <h6 class="mx-3">@Model.Role.Name rolüne kullanıcı ata</h6>
+                    <table class="table">
+                        @if(Model.NonMembers.Count() == 0){
+                            <tr>
+                                <td colspan="2">Bütün kullanıcılar role ait</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var user in Model.NonMembers)
+                            {
+                                <tr>
+                                    <td>
+                                        @user.UserName
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="IdsToAdd" value="@user.Id"></input>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <hr/>
+                    <h6 class="mx-3">@Model.Role.Name rolünden kullanıcı sil</h6>
+                    <table class="table">
+                        @if (Model.Members.Count() == 0)
+                        {
+                            <tr>
+                                <td colspan="2">Role ait kullanıcı yok.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var user in Model.Members)
+                            {
+                                <tr>
+                                    <td>
+                                        @user.UserName
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="IdsToDelete" value="@user.Id"></input>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
