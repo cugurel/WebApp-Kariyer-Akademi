@@ -120,9 +120,47 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateMovie(Movie movie)
         {
+            var currentMovie = _movieService.GetById(movie.Id);
+            if (movie.File == null)
+            {
+                movie.ImageUrl = currentMovie.ImageUrl;
+                _movieService.MovieUpdate(movie);
+                return RedirectToAction("Index", "Home");
+            }
+            
 
-            _movieService.MovieUpdate(movie);
-            return RedirectToAction("Index", "Home");
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", currentMovie.ImageUrl);
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+            
+           
+
+            if (movie.File != null)
+            {
+                var item = movie.File;
+                var extent = Path.GetExtension(item.FileName);
+                var randomName = ($"{Guid.NewGuid()}{extent}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images", randomName);
+
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await item.CopyToAsync(stream);
+                }
+
+                movie.ImageUrl = randomName;
+                _movieService.MovieUpdate(movie);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                _movieService.MovieUpdate(movie);
+                return RedirectToAction("Index", "Home");
+            }
+            
 
             //try
             //{

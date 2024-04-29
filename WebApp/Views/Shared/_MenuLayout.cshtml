@@ -44,46 +44,49 @@
         </ul>
     </li>
 
-    <li class="menu-header small text-uppercase">
-        <span class="menu-header-text">Yönetici Menüsü</span>
-    </li>
-    <!-- Apps -->
-    <li class="menu-item">
-        <a href="/User/Register"
-           target="_blank"
-           class="menu-link">
-            <i class="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="Email">Kullanıcı Oluştur</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="/User/Index"
-           target="_blank"
-           class="menu-link">
-            <i class="menu-icon tf-icons bx bx-list-ul"></i>
-            <div data-i18n="Chat">Kullanıcı Listesi</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Dashboards">Rol Yönetimi</div>
-        </a>
-        <ul class="menu-sub">
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Yönetici Menüsü</span>
+        </li>
+        <!-- Apps -->
+        <li class="menu-item">
+            <a href="/User/Register"
+               class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Email">Kullanıcı Oluştur</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/User/Index"
+               class="menu-link">
+                <i class="menu-icon tf-icons bx bx-list-ul"></i>
+                <div data-i18n="Chat">Kullanıcı Listesi</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Dashboards">Rol Yönetimi</div>
+            </a>
+            <ul class="menu-sub">
 
-            <li class="menu-item">
-                <a href="/Role/Index" class="menu-link">
-                    <div data-i18n="Analytics">Rol Listesi</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="/Role/CreateRole" class="menu-link">
-                    <div data-i18n="Analytics">Rol Ekle</div>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="/Role/Index" class="menu-link">
+                        <div data-i18n="Analytics">Rol Listesi</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/Role/CreateRole" class="menu-link">
+                        <div data-i18n="Analytics">Rol Ekle</div>
+                    </a>
+                </li>
 
-        </ul>
-    </li>
+            </ul>
+        </li>
+    }
+
+    
 
 </ul>
 

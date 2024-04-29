@@ -77,5 +77,11 @@ namespace WebApp.Controllers
             }
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Login","Auth");
+        }
     }
 }

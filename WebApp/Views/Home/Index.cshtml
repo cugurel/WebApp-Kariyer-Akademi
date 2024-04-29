@@ -13,6 +13,7 @@
         
         <h5 class="card-header">Sistemde Kayıtlı Fimler</h5>
         <div class="col-sm-3 mx-3">
+            <a href="/Movie/AddMovie" class="btn btn-primary mx-1 mb-2">Yeni Film Ekle</a>
             <div class="input-group input-group-merge">
                 <input type="text"
                        id="myInput" onkeyup="myFunction()"
@@ -28,7 +29,7 @@
             <table class="table" id="myTable">
                 <thead>
                     <tr>
-                        <th>Yeni Ekle</th>
+                        
                         <th>Adı</th>
                         <th>IMDB</th>
                         <th>Yönetmen</th>
@@ -42,9 +43,9 @@
                     @foreach(var item in Model)
                     {
                         <tr>
-                            <td>
-                                <a href="/Movie/AddMovie" class="btn btn-primary">(+)</a>
-                            </td>
+                           
+                                
+                           
                             <td>
                                 <img src="~/Images/@item.ImageUrl" style="height:40px; width=40px;" />
                                 <span class="fw-medium">@item.Name</span>
@@ -359,7 +360,7 @@
 
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
+            td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

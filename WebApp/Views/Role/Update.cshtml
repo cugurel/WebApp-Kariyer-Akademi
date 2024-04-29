@@ -12,7 +12,9 @@
 
         <div class="row">
             <div class="col-md-12">
-                <form action="/Role/Update">
+                <form action="/Role/Update" method="post">
+                    <input type="hidden" name="RoleId" value="@Model.Role.Id"></input>
+                    <input type="hidden" name="RoleName" value="@Model.Role.Name"></input>
                     <h6 class="mx-3">@Model.Role.Name rolüne kullanıcı ata</h6>
                     <table class="table">
                         @if(Model.NonMembers.Count() == 0){
@@ -59,6 +61,8 @@
                             }
                         }
                     </table>
+
+                    <button type="submit" class="btn btn-sm btn-success mx-2 mt-4">Atamayı Güncelle</button>
                 </form>
             </div>
         </div>
