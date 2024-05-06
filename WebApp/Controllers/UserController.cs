@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WebApp.Identity;
 using WebApp.Models.Identity;
 
@@ -15,6 +16,14 @@ namespace WebApp.Controllers
         {
             _userManager = userManager;
             _signinManager = signinManager;
+        }
+
+        [Authorize]
+        public async Task<IActionResult> UserDetail()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+            return View(user);
         }
 
         [Authorize]

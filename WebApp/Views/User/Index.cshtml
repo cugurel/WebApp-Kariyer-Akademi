@@ -27,13 +27,12 @@
             <table class="table" id="myTable">
                 <thead>
                     <tr>
-                        <th>Yeni Ekle</th>
+                        
                         <th>Adı</th>
                         <th>Soyadı</th>
                         <th>Kullanıcı Adı</th>
                         <th>Email</th>
                         <th>Detay</th>
-                        <th>Düzenle</th>
                         <th>Sil</th>
                     </tr>
                 </thead>
@@ -41,9 +40,7 @@
                     @foreach(var item in Model)
                     {
                         <tr>
-                            <td>
-                                <a href="/Movie/AddMovie" class="btn btn-primary">(+)</a>
-                            </td>
+                            
                             <td>
                                 <span class="fw-medium">@item.FirstName</span>
                             </td>
@@ -55,11 +52,9 @@
                             </td>
                             <td>@item.Email</td>
                             <td>
-                                <a href="/Movie/MovieDetail/@item.Id" class="btn btn-info btn-sm">Detay</a>
+                                <a href="/User/UserDetail/@item.Id" class="btn btn-info btn-sm">Detay</a>
                             </td>
-                            <td>
-                                <a href="/Movie/UpdateMovie/@item.Id" class="btn btn-success btn-sm">Güncelle</a>
-                            </td>
+                            
                             <td>
                                 <a href="/Movie/DeleteMovie/@item.Id" class="btn btn-danger btn-sm">Sil</a>
                             </td>
