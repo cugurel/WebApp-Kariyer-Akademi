@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using WebApp.Models;
+using X.PagedList;
 
 namespace WebApp.Controllers
 {
@@ -20,9 +21,9 @@ namespace WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
-            var movies = _movieService.GetMoviesWithCategory();
+            var movies = _movieService.GetMoviesWithCategory().ToPagedList(page,2);
             return View(movies);
         }
 

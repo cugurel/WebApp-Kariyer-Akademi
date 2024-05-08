@@ -1,4 +1,6 @@
-﻿@using Entity.Concrete.DTOs
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@using Entity.Concrete.DTOs
 @model IEnumerable<MovieCategoryDto>
 
 @{
@@ -69,6 +71,14 @@
 
                 </tbody>
             </table>
+            <div class="row mx-2 mt-2 text-end">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Home", 
+                new { page = page }), new PagedListRenderOptions()
+                {
+               LiElementClasses = new string[] { "page-item" },
+               PageClasses = new string[] { "page-link" }
+                })
+            </div>
         </div>
     </div>
     <div class="row">

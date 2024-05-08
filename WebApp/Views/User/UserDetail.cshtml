@@ -674,7 +674,7 @@
                                     </div>
                                     <hr class="my-0" />
                                     <div class="card-body">
-                                        <form id="formAccountSettings" method="POST" onsubmit="return false">
+                                        <form id="formAccountSettings" method="post" action="/User/UpdateUser">
                                             <div class="row">
                                                 <div class="mb-3 col-md-6">
                                                     <input class="form-control"
@@ -687,19 +687,19 @@
                                                     <input class="form-control"
                                                            type="text"
                                                            id="firstName"
-                                                           name="FirstName"
+                                                           name="Name"
                                                            value="@Model.FirstName"
                                                            autofocus />
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="lastName" class="form-label">Soy Ad</label>
-                                                    <input class="form-control" type="text" name="LastName" id="lastName" value="@Model.Lastname" />
+                                                    <input class="form-control" type="text" name="Surname" id="lastName" value="@Model.Lastname" />
                                                 </div>
                                                 
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label">Telefon</label>
                                                     <div class="input-group input-group-merge">
-                                                        <input class="form-control" type="text" onkeypress="isInputNumber(event)" id="phonenumber" name="PhoneNumber" placeholder="(XXX) XXX-XX-XX" maxlength="10" id="lastName" value="@Model.PhoneNumber" />
+                                                        <input class="form-control" type="text" onkeypress="isInputNumber(event)" id="phonenumber" name="Phone" placeholder="(XXX) XXX-XX-XX" maxlength="10" id="lastName" value="@Model.PhoneNumber" />
                                                     </div>
                                                 </div>
                                                 

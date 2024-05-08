@@ -26,6 +26,29 @@ namespace WebApp.Controllers
             return View(user);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UserDetailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.Id);
+                user.FirstName = model.Name;
+                user.Lastname = model.Surname;
+                user.PhoneNumber = model.Phone;
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View(user);
+                }
+            }
+            return View();
+        }
+
         [Authorize]
         public IActionResult Index()
         {
