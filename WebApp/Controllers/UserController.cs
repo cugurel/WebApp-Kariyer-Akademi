@@ -26,6 +26,14 @@ namespace WebApp.Controllers
             return View(user);
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> MemberInfo(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            return View(user);
+        }
+
         [HttpPost]
         public async Task<IActionResult> UpdateUser(UserDetailViewModel model)
         {
