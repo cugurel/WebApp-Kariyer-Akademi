@@ -28,7 +28,17 @@ namespace WebApp.Controllers
 
             Context c = new Context();
             var userImage = c.UserImages.Where(x => x.UserId == userId).FirstOrDefault();
-            ViewBag.Image = userImage.FileUrl;
+
+            if(userImage == null)
+            {
+                ViewBag.Image = "/template/assets/img/avatars/1.png";
+            }
+            else
+            {
+                ViewBag.Image = "/Images/Users/"+userImage.FileUrl;
+            }
+
+            
             var user = await _userManager.FindByIdAsync(userId);
             return View(user);
         }
@@ -85,7 +95,7 @@ namespace WebApp.Controllers
                 Context c = new Context();
                 c.UserImages.Add(userImage);
                 c.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return Redirect("UserDetail/"+userId);
             }
 
             return View();
