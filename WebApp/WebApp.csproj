@@ -38,4 +38,8 @@
     <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Users\" />
+  </ItemGroup>
+
 </Project>

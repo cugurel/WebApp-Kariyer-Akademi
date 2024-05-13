@@ -651,6 +651,9 @@
                                     <h5 class="card-header">Profil Detayı</h5>
                                     <!-- Account -->
                                     <div class="card-body">
+                                        <form action="/User/AddProfileImage" method="post" enctype="multipart/form-data">
+
+                                        
                                         <div class="d-flex align-items-start align-items-sm-center gap-4">
                                             <img src="~/template/assets/img/avatars/1.png"
                                                  alt="user-avatar"
@@ -659,19 +662,20 @@
                                                  width="100"
                                                  id="uploadedAvatar" />
                                             <div class="button-wrapper">
-                                                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                                    <span class="d-none d-sm-block">Yeni Görsel Ekle</span>
-                                                    <i class="bx bx-upload d-block d-sm-none"></i>
-                                                    <input type="file"
-                                                           id="upload"
-                                                           class="account-file-input"
-                                                           hidden
-                                                           accept="image/png, image/jpeg" />
-                                                </label>
+
+                                                    <button type="submit" class="btn btn-primary btn-sm me-2">Yeni Görsel Ekle</button>
+                                                    
                                                 
                                             </div>
                                         </div>
+                                            <input type="file"
+                                                name="File"
+                                                   id="upload"
+                                                   class="account-file-input mx-4 mb-3"
+                                                   accept="image/png, image/jpeg" />
+                                        </form>
                                     </div>
+                                    
                                     <hr class="my-0" />
                                     <div class="card-body">
                                         <form id="formAccountSettings" method="post" action="/User/UpdateUser">

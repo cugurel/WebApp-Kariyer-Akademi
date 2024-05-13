@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Business.Abstract;
+using DataAccessLayer.Concrete;
+using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -22,6 +25,10 @@ namespace WebApp.Controllers
         public async Task<IActionResult> UserDetail()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            Context c = new Context();
+            var userImage = c.UserImages.Where(x => x.UserId == userId).FirstOrDefault();
+            ViewBag.Image = userImage.FileUrl;
             var user = await _userManager.FindByIdAsync(userId);
             return View(user);
         }
@@ -54,6 +61,33 @@ namespace WebApp.Controllers
                     return View(user);
                 }
             }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProfileImage(UserImage userImage)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userImage.File != null)
+            {
+                var item = userImage.File;
+                var extent = Path.GetExtension(item.FileName);
+                var randomName = ($"{Guid.NewGuid()}{extent}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Images\\Users", randomName);
+
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await item.CopyToAsync(stream);
+                }
+                userImage.UserId = userId;
+                userImage.FileUrl = randomName;
+                Context c = new Context();
+                c.UserImages.Add(userImage);
+                c.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 

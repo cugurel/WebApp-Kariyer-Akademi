@@ -26,7 +26,7 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Index(int page = 1)
         {
-            var movies = _movieService.GetMoviesWithCategory().ToPagedList(page,2);
+            var movies = _movieService.GetMoviesWithCategory().ToPagedList(page,5);
             return View(movies);
         }
 
