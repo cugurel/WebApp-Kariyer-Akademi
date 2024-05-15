@@ -179,7 +179,6 @@ namespace WebApp.Controllers
             //    throw e;
             //}
 
-            return View();
         }
     }
 }

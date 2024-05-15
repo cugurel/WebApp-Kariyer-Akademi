@@ -18,6 +18,10 @@ namespace Business.DependencyResolvers.Autofac
             //Movie bağımlılıkları
             builder.RegisterType<MovieManager>().As<IMovieService>().SingleInstance();
             builder.RegisterType<EfMovieRepository>().As<IMovieDal>().SingleInstance();
+
+            //Director bağımlılıkları
+            builder.RegisterType<DirectorManager>().As<IDirectorService>().SingleInstance();
+            builder.RegisterType<EfDirectorRepository>().As<IDirectorDal>().SingleInstance();
         }
     }
 }

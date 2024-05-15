@@ -1,5 +1,4 @@
-﻿using Business.Abstract;
-using DataAccessLayer.Concrete;
+﻿using DataAccessLayer.Concrete;
 using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

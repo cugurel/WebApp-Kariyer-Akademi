@@ -16,6 +16,7 @@ namespace Api.Controllers
         /// Tüm kategorileri listeler.
         /// </summary>
         [HttpGet("AllCategories")]
+        
         public IActionResult GetAllCategory()
         {
             var values = categoryManager.GetAll();

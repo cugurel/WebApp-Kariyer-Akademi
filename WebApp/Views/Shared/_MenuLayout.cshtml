@@ -44,6 +44,27 @@
         </ul>
     </li>
 
+
+    <li class="menu-item">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Dashboards">Yönetmen Yönetimi</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="/Director/Index" class="menu-link">
+                    <div data-i18n="Analytics">Yönetmen Listesi</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="/Director/AddDirector" class="menu-link">
+                    <div data-i18n="Analytics">Yönetmen Ekle</div>
+                </a>
+            </li>
+
+        </ul>
+    </li>
     @if (User.IsInRole("Admin"))
     {
         <li class="menu-header small text-uppercase">
