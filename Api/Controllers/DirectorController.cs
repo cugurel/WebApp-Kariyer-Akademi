@@ -71,7 +71,7 @@ namespace Api.Controllers
         /// <summary>
         /// Yönetmen sil
         /// </summary>
-        [HttpDelete("DeleteDirector")]
+        [HttpDelete("DeleteDirector/{id:int}")]
         public IActionResult DeleteDirector(int id)
         {
             var value = _directorService.GetById(id);

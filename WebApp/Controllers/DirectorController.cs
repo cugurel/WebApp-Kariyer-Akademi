@@ -70,5 +70,18 @@ namespace WebApp.Controllers
             }
             return RedirectToAction("Index", "Director");
         }
+
+       
+        public async Task<IActionResult> DeleteDirector(int id)
+        {
+            using var httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync($"https://localhost:7101/api/Director/DeleteDirector/{id}");
+            var result = responseMessage.Content.ReadAsStringAsync().Result;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Director");
+            }
+            return RedirectToAction("Index", "Director");
+        }
     }
 }

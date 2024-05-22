@@ -64,7 +64,7 @@
                 </tbody>
             </table>
             <div class="row mx-2 mt-2 text-end">
-                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Home",
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Director",
                          new { page = page }), new PagedListRenderOptions()
                 {
                     LiElementClasses = new string[] { "page-item" },
