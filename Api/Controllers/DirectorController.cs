@@ -37,7 +37,7 @@ namespace Api.Controllers
         /// <summary>
         /// Id girilmesi zorunludur, id ye göre yönetmen getirir.
         /// </summary>
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             var value = _directorService.GetById(id);

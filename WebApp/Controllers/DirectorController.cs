@@ -41,5 +41,34 @@ namespace WebApp.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateDirector(int id)
+        {
+            using var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:7101/api/Director/" + id);
+            if(responseMessage.IsSuccessStatusCode)
+            {
+                var jsonDirector = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Director>(jsonDirector);
+                return View(values);
+            }
+            return RedirectToAction("Index", "Director");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateDirector(Director director)
+        {
+            using var httpClient = new HttpClient();
+            var jsonDirector = JsonConvert.SerializeObject(director);
+            StringContent content = new StringContent(jsonDirector, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PutAsync("https://localhost:7101/api/Director/UpdateDirector", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Director");
+            }
+            return RedirectToAction("Index", "Director");
+        }
     }
 }
