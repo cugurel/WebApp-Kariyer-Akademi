@@ -14,6 +14,7 @@ namespace DataAccessLayer.Concrete
         {
             optionsBuilder.UseSqlServer("server = Cagri; database=MovieDb; integrated security=true;");
         }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Town> Towns { get; set; }
         public DbSet<Director> Directors { get; set; }

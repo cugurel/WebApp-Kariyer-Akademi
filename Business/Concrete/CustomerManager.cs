@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccessLayer.Abstract;
 using Entity.Concrete;
+using Entity.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace Business.Concrete
         public Customer GetById(int id)
         {
             return _customerDal.GetById(id);
+        }
+
+        public List<CustomerDto> GetCustomerDto()
+        {
+            return _customerDal.GetCustomerDto();
         }
 
         public void Update(Customer t)
