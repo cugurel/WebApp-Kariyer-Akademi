@@ -10,6 +10,11 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+
+            //Customer bağımlılıkları
+            builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
+            builder.RegisterType<EfCustomerRepository>().As<ICustomerDal>().SingleInstance();
+
             //Category bağımlılıkları
             builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<EfCategoryRepository>().As<ICategoryDal>().SingleInstance();
