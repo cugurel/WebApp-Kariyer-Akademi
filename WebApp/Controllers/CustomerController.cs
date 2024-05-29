@@ -36,6 +36,15 @@ namespace WebApp.Controllers
 
         public IActionResult CustomerDetail(int id)
         {
+            List<SelectListItem> customerList = (from x in c.Customers.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.Name,
+                                                 Value = x.Id.ToString()
+                                             }).ToList();
+
+            ViewBag.Customer = customerList;
+
             var customer = _customerService.GetById(id);
             return View(customer);
         }
