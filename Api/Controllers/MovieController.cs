@@ -10,51 +10,51 @@ namespace Api.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        MovieManager movieManager = new MovieManager(new EfMovieRepository());
+        //MovieManager movieManager = new MovieManager(new EfMovieRepository());
 
-        [HttpGet("AllMovies")]
-        public IActionResult GetAllMovie()
-        {
-            var values = movieManager.GetMoviesWithCategory();
-            if (values == null)
-            {
-                return BadRequest("Veri bulunamadı!!!");
-            }
-            return Ok(values);
-        }
+        //[HttpGet("AllMovies")]
+        //public IActionResult GetAllMovie()
+        //{
+        //    var values = movieManager.GetMoviesWithCategory();
+        //    if (values == null)
+        //    {
+        //        return BadRequest("Veri bulunamadı!!!");
+        //    }
+        //    return Ok(values);
+        //}
 
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var value = movieManager.GetById(id);
-            if (value == null)
-            {
-                return BadRequest("Veri bulunamadı!!!");
-            }
-            return Ok(value);
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult GetById(int id)
+        //{
+        //    var value = movieManager.GetById(id);
+        //    if (value == null)
+        //    {
+        //        return BadRequest("Veri bulunamadı!!!");
+        //    }
+        //    return Ok(value);
+        //}
 
-        [HttpPost("AddNewMovie")]
-        public IActionResult AddMovie(Movie movie)
-        {
-            movieManager.MovieAdd(movie);
-            return Ok(movie);
-        }
+        //[HttpPost("AddNewMovie")]
+        //public IActionResult AddMovie(Movie movie)
+        //{
+        //    movieManager.MovieAdd(movie);
+        //    return Ok(movie);
+        //}
 
-        [HttpPut("UpdateMovie")]
-        public IActionResult UpdateMovie(Movie movie)
-        {
-            movieManager.MovieUpdate(movie);
-            return Ok(movie);
-        }
+        //[HttpPut("UpdateMovie")]
+        //public IActionResult UpdateMovie(Movie movie)
+        //{
+        //    movieManager.MovieUpdate(movie);
+        //    return Ok(movie);
+        //}
 
-        [HttpDelete("DeleteMovie")]
-        public IActionResult DeleteMovie(int id)
-        {
-            var value = movieManager.GetById(id);
-            movieManager.MovieDelete(value);
-            return Ok();
-        }
+        //[HttpDelete("DeleteMovie")]
+        //public IActionResult DeleteMovie(int id)
+        //{
+        //    var value = movieManager.GetById(id);
+        //    movieManager.MovieDelete(value);
+        //    return Ok();
+        //}
     }
 }

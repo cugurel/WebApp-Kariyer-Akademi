@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface ICustomerDal: IGenericDal<Customer>
+    public interface ICustomerDal:IGenericDal<Customer>
     {
         List<CustomerDto> GetCustomerDto();
+
     }
 }

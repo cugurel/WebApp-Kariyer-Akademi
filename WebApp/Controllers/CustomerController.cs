@@ -123,6 +123,63 @@ namespace WebApp.Controllers
             return RedirectToAction("Index","Customer");
         }
 
+        [HttpGet]
+        public IActionResult UpdateCustomer(int id)
+        {
+
+            List<SelectListItem> cityList = (from x in c.Cities.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.Name,
+                                                 Value = x.Id.ToString()
+                                             }).ToList();
+
+            ViewBag.City = cityList;
+
+
+            
+
+            var customer = _customerService.GetById(id);
+
+            List<SelectListItem> townList = (from x in c.Towns.Where(x=>x.CityId == customer.CityId).ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.Name,
+                                                 Value = x.Id.ToString()
+                                             }).ToList();
+
+            ViewBag.Town = townList;
+            return View(customer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCustomer(Customer customer)
+        {
+            List<SelectListItem> cityList = (from x in c.Cities.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.Name,
+                                                 Value = x.Id.ToString()
+                                             }).ToList();
+
+            ViewBag.City = cityList;
+
+
+            List<SelectListItem> townList = (from x in c.Towns.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = x.Name,
+                                                 Value = x.Id.ToString()
+                                             }).ToList();
+
+            ViewBag.Town = townList;
+
+            _customerService.Update(customer);
+            
+
+            return RedirectToAction("Index", "Customer");
+        }
+
 
         public IActionResult DeleteCustomer(int id)
         {

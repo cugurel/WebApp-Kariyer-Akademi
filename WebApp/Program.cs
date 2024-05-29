@@ -1,12 +1,12 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
+using DataAccessLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("server = Cagri; database=MovieDb; integrated security=true;",
     builder => builder.EnableRetryOnFailure()));
