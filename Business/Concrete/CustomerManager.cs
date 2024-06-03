@@ -21,22 +21,27 @@ namespace Business.Concrete
 
         public void Add(Customer t)
         {
-            _customerDal.Insert(t);
+            throw new NotImplementedException();
         }
 
         public void Delete(Customer t)
         {
-            _customerDal.Delete(t);
+            throw new NotImplementedException();
         }
 
         public List<Customer> GetAll()
         {
-            return _customerDal.GetAll();
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Customer>> GetAllCustomer()
+        {
+            throw new NotImplementedException();
         }
 
         public Customer GetById(int id)
         {
-            return _customerDal.GetById(id);
+            return  _customerDal.GetById(id);
         }
 
         public List<CustomerDto> GetCustomerDto()
@@ -46,7 +51,7 @@ namespace Business.Concrete
 
         public void Update(Customer t)
         {
-            _customerDal.Update(t);
+            throw new NotImplementedException();
         }
     }
 }

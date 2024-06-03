@@ -11,5 +11,6 @@ namespace Business.Abstract
     public interface ICustomerService : IGenericService<Customer>
     {
         List<CustomerDto> GetCustomerDto();
+        Task<List<Customer>> GetAllCustomer();
     }
 }

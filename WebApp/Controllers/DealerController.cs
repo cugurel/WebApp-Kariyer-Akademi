@@ -22,7 +22,7 @@ namespace WebApp.Controllers
         public IActionResult AddDealer(Dealer dealer)
         {
             _dealerService.Add(dealer);
-            return RedirectToAction("CustomerDetail", "Customer" + dealer.CustomerId);
+            return RedirectToAction("CustomerDetail", "Customer", new { id = dealer.CustomerId });
         }
     }
 }

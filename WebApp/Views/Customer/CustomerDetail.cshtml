@@ -343,52 +343,51 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <div class="card mb-4">
-                                   
-                                    <h5 class="card-header">Bayilikler</h5>
-                                    <!-- Account -->
+                                <div class="card mb-5">
 
+                                    <h5 class="card-header">Müşteriye Ait Bayiler</h5>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-primary mb-2 mx-1" data-toggle="modal" data-target="#exampleModal" data-whatever="">Bayilik Ekle</button>
                                     </div>
-                                    <hr class="my-0" />
-                                    <div class="card-body">
-                                        <form id="formAccountSettings" method="post" action="/User/UpdateUser">
-                                            <div class="row">
-                                                <div class="mb-3 col-md-6">
-                                                    <input class="form-control"
-                                                           type="hidden"
-                                                           id="firstName"
-                                                           name="Id"
-                                                           autofocus />
-                                                    <label for="firstName" class="form-label">Ad</label>
-                                                    <input class="form-control"
-                                                           type="text"
-                                                           id="firstName"
-                                                           name="Name"
-                                                           
-                                                           autofocus />
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="lastName" class="form-label">Soy Ad</label>
-                                                    <input class="form-control" type="text" name="Surname" id="lastName"  />
-                                                </div>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Adı</th>
+                                                    <th>Adres</th>
+                                                    <th>Telefon</th>
+                                                    <th>Personel</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0">
+                                                @foreach (var item in ViewBag.Dealers as IEnumerable<Dealer>)
+                                                {
+                                                    <tr>
+                                                        
+                                                        <td>
+                                                            @item.Name
+                                                        </td>
+                                                        <td>
+                                                            @item.Address
+                                                        </td>
+                                                        <td>
+                                                            @item.Phone
+                                                        </td>
+                                                        <td>
+                                                            @item.Person
+                                                        </td>
+                                                        @* <td>
+                                                            <a href="/Category/UpdateCategory/@item.Id" class="btn btn-success btn-sm">Güncelle</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/Category/DeleteCategory/@item.Id" class="btn btn-danger btn-sm">Sil</a>
+                                                        </td> *@
+                                                    </tr>
+                                                }
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label class="form-label">Telefon</label>
-                                                    <div class="input-group input-group-merge">
-                                                        <input class="form-control" type="text" onkeypress="isInputNumber(event)" id="phonenumber" name="Phone" placeholder="(XXX) XXX-XX-XX" maxlength="10" id="lastName"  />
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2">Değişiklileri Kaydet</button>
-                                            </div>
-                                        </form>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <!-- /Account -->
                                 </div>
 
                             </div>

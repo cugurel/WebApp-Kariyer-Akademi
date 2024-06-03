@@ -9,10 +9,12 @@ namespace WebApp.Controllers
     public class CustomerController : Controller
     {
         ICustomerService _customerService;
+        IDealerService _dealerService;
         Context c = new Context();
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, IDealerService dealerService)
         {
             _customerService = customerService;
+            _dealerService = dealerService;
         }
 
         public JsonResult GetTown(int p)
@@ -44,6 +46,8 @@ namespace WebApp.Controllers
                                              }).ToList();
 
             ViewBag.Customer = customerList;
+
+            ViewBag.Dealers = _dealerService.GetAll().Where(x=>x.CustomerId == id);
 
             var customer = _customerService.GetById(id);
             return View(customer);
