@@ -1,4 +1,5 @@
-﻿@using Entity.Concrete.DTOs
+﻿@using Entity.Concrete
+@using Entity.Concrete.DTOs
 @model IEnumerable<MovieCategoryDto>
 
 
@@ -78,136 +79,45 @@
                 </div>
                 <div class="box">
                     <div class="head">
-                        <h2>TOP RATED</h2>
+                        <h2>En Çok Oylananlar</h2>
                         <p class="text-right"><a href="#">See all</a></p>
                     </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">TRANSFORMERS</span></span> <a href="#"><img src="css/images/movie7.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
+                    @foreach (var item in ViewBag.TopRatedMovies as IEnumerable<Movie>)
+                    {
+                        <div class="movie">
+                            <div class="movie-image"> <span class="play"><span class="name">@item.Name</span></span> <a href="#"><img src="~/Images/@item.ImageUrl" alt="" /></a> </div>
+                            <div class="rating">
+                                <p>IMDB</p>
+                                <div class="stars">
+                                    <div class="stars-in"> </div>
+                                </div>
+                                <span class="comments">@item.ImdbRate</span>
                             </div>
-                            <span class="comments">12</span>
                         </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">MAGNETO</span></span> <a href="#"><img src="css/images/movie8.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">KUNG FU PANDA</span></span> <a href="#"><img src="css/images/movie9.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">EAGLE EYE</span></span> <a href="#"><img src="css/images/movie10.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">NARNIA</span></span> <a href="#"><img src="css/images/movie11.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie last">
-                        <div class="movie-image"> <span class="play"><span class="name">ANGELS &amp; DEMONS</span></span> <a href="#"><img src="css/images/movie12.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
+                    }
+                    
+                   
                     <div class="cl">&nbsp;</div>
                 </div>
                 <div class="box">
                     <div class="head">
-                        <h2>MOST COMMENTED</h2>
+                        <h2>En çok yorum alanlar</h2>
                         <p class="text-right"><a href="#">See all</a></p>
                     </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">HOUSE</span></span> <a href="#"><img src="css/images/movie13.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
+                    @foreach (var item in ViewBag.MostCommentedMovies as IEnumerable<Movie>)
+                    {
+                        <div class="movie">
+                            <div class="movie-image"> <span class="play"><span class="name">@item.Name</span></span> <a href="#"><img src="~/Images/@item.ImageUrl" alt="" /></a> </div>
+                            <div class="rating">
+                                <p>IMDB</p>
+                                <div class="stars">
+                                    <div class="stars-in"> </div>
+                                </div>
+                                <span class="comments">@item.ImdbRate</span>
                             </div>
-                            <span class="comments">12</span>
                         </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">VACANCY</span></span> <a href="#"><img src="css/images/movie14.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">MIRRORS</span></span> <a href="#"><img src="css/images/movie15.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">THE KINGDOM</span></span> <a href="#"><img src="css/images/movie16.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie">
-                        <div class="movie-image"> <span class="play"><span class="name">MOTIVES</span></span> <a href="#"><img src="css/images/movie17.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
-                    <div class="movie last">
-                        <div class="movie-image"> <span class="play"><span class="name">THE PRESTIGE</span></span> <a href="#"><img src="css/images/movie18.jpg" alt="" /></a> </div>
-                        <div class="rating">
-                            <p>RATING</p>
-                            <div class="stars">
-                                <div class="stars-in"> </div>
-                            </div>
-                            <span class="comments">12</span>
-                        </div>
-                    </div>
+                    }
+                    
                     <div class="cl">&nbsp;</div>
                 </div>
             </div>
