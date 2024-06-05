@@ -1,9 +1,11 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class DealerController : Controller
     {
         IDealerService _dealerService;

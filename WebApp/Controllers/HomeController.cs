@@ -14,6 +14,7 @@ using X.PagedList;
 
 namespace WebApp.Controllers
 {
+
     [Authorize]
     public class HomeController : Controller
     {

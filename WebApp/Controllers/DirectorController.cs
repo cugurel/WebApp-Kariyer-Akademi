@@ -1,4 +1,5 @@
 ﻿using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,6 +9,7 @@ using X.PagedList;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class DirectorController : Controller
     {
         public async Task<IActionResult> Index(int page = 1)

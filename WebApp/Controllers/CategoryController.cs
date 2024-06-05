@@ -73,7 +73,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult UpdateCategory(Category category)
         {
-            _categoryService.Add(category);
+            _categoryService.Update(category);
             return RedirectToAction("Index", "Category");
         }
     }

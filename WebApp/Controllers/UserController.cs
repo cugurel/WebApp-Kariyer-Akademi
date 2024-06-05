@@ -9,6 +9,7 @@ using WebApp.Models.Identity;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         UserManager<User> _userManager;

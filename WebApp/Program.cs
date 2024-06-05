@@ -2,12 +2,22 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
 using DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebApp.CustomFilter;
 using WebApp.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+builder.Services.AddSession();
+builder.Services.AddMvc(config =>
+{
+    config.Filters.Add(new ResponseCacheFilter());
+});
+
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("server = Cagri; database=MovieDb; integrated security=true;",
     builder => builder.EnableRetryOnFailure()));
 
@@ -43,6 +53,7 @@ app.UseStaticFiles();
 app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");
